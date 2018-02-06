@@ -1,5 +1,5 @@
 #!/usr/bin/groovy
-package io.yp28
+package com.ultimaker
 
 @Grab('com.github.slugify:slugify:2.2')
 import com.github.slugify.Slugify
