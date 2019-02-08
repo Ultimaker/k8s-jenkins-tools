@@ -2,7 +2,7 @@
 
 package com.ultimaker
 
-@Grab('commons-lang:commons-lang:3.8.1')
+@Grab('org.apache.commons:commons-lang3:3.8.1')
 
 import org.apache.commons.lang3.RandomStringUtils
 
