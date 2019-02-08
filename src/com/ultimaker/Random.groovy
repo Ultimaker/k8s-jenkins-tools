@@ -1,11 +1,11 @@
 #!/usr/bin/groovy
+
 package com.ultimaker
 
-@Grab('commons-lang:commons-lang:2.6')
-import org.apache.commons.lang.RandomStringUtils
+@Grab('commons-lang:commons-lang:3.8.1')
 
-def string(int length) {
-  String charset = (('a'..'z') + ('A'..'Z') + ('0'..'9')).join()
+import org.apache.commons.lang3.RandomStringUtils
 
-  return RandomStringUtils.random(length, charset.toCharArray())
+String string(int length) {
+  return RandomStringUtils.randomAlphanumeric(length)
 }
