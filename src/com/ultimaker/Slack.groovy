@@ -94,7 +94,7 @@ def deletePlaygroundFailure(String name, String buildUrl) {
 def extendPlaygroundSuccess(String name, String buildUrl, String expiresAfter) {
   Map[] attachments = [[
     color: 'warning',
-    fallback: "Playground \"${name}\" extended with *${expiresAfter}*.",
+    fallback: "Playground \"${name}\" extended with ${expiresAfter}.",
     pretext: "Playground \"${name}\" extended with *${expiresAfter}* ( <${buildUrl}|job> / <${buildUrl}console|console> )."
   ]]
 
