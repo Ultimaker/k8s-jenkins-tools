@@ -6,7 +6,7 @@ package com.ultimaker
  * CREATE PLAYGROUND
  */
 
-static def createPlaygroundSuccess(
+def createPlaygroundSuccess(
   String name,
   String buildUrl,
   String frontendBranch,
@@ -39,7 +39,7 @@ static def createPlaygroundSuccess(
   slackSend channel: '#ci-playgrounds', attachments: attachments
 }
 
-static def createPlaygroundFailure(String name, String buildUrl) {
+def createPlaygroundFailure(String name, String buildUrl) {
   Map[] attachments = [[
     color: 'danger',
     fallback: "Creating playground \"${name}\" failed.",
@@ -53,12 +53,12 @@ static def createPlaygroundFailure(String name, String buildUrl) {
  * CLEANUP PLAYGROUND
  */
 
-static def cleanupPlaygroundSuccess(String name) {
+def cleanupPlaygroundSuccess(String name) {
   slackSend color: 'warning', channel: '#ci-playgrounds',
     message: "Playground \"${name}\" has been cleaned up."
 }
 
-static def cleanupPlaygroundFailure(String name) {
+def cleanupPlaygroundFailure(String name) {
   slackSend color: 'danger', channel: '#ci-playgrounds',
     message: "Failed to clean up \"${name}\" playground."
 }
@@ -67,7 +67,7 @@ static def cleanupPlaygroundFailure(String name) {
  * DELETE PLAYGROUND
  */
 
-static def deletePlaygroundSuccess(String name, String buildUrl) {
+def deletePlaygroundSuccess(String name, String buildUrl) {
   Map[] attachments = [[
     color: 'warning',
     fallback: "Playground \"${name}\" was deleted.",
@@ -77,7 +77,7 @@ static def deletePlaygroundSuccess(String name, String buildUrl) {
   slackSend channel: '#ci-playgrounds', attachments: attachments
 }
 
-static def deletePlaygroundFailure(String name, String buildUrl) {
+def deletePlaygroundFailure(String name, String buildUrl) {
   Map[] attachments = [[
     color: 'danger',
     fallback: "Failed to delete playground \"${name}\".",
@@ -91,7 +91,7 @@ static def deletePlaygroundFailure(String name, String buildUrl) {
  * EXTEND PLAYGROUND
  */
 
-static def extendPlaygroundSuccess(String name, String buildUrl, String expiresAfter) {
+def extendPlaygroundSuccess(String name, String buildUrl, String expiresAfter) {
   Map[] attachments = [[
     color: 'warning',
     fallback: "Playground \"${name}\" extended with ${expiresAfter}.",
@@ -101,7 +101,7 @@ static def extendPlaygroundSuccess(String name, String buildUrl, String expiresA
   slackSend channel: '#ci-playgrounds', attachments: attachments
 }
 
-static def extendPlaygroundFailure(String name, String buildUrl) {
+def extendPlaygroundFailure(String name, String buildUrl) {
   Map[] attachments = [[
     color: 'danger',
     fallback: "Failed to extend playground \"${name}\".",
@@ -115,7 +115,7 @@ static def extendPlaygroundFailure(String name, String buildUrl) {
  * UPDATE PLAYGROUND
  */
 
-static def updatePlaygroundSuccess(
+def updatePlaygroundSuccess(
   String name,
   String buildUrl,
   String component,
@@ -141,7 +141,7 @@ static def updatePlaygroundSuccess(
  * UPDATE DEPLOYMENT
  */
 
-static def updateDeploymentSuccess(
+def updateDeploymentSuccess(
   String name,
   String buildUrl,
   String deploymentUrl,
@@ -164,7 +164,7 @@ static def updateDeploymentSuccess(
   slackSend channel: '#ci-deployments', attachments: attachments
 }
 
-static def updateDeploymentFailure(
+def updateDeploymentFailure(
   String name,
   String buildUrl,
   String component
@@ -182,7 +182,7 @@ static def updateDeploymentFailure(
  * BUILD FAILURE
  */
 
-static def buildFailure(
+def buildFailure(
   String buildUrl,
   String component,
   String repo,
