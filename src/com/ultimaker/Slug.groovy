@@ -7,7 +7,5 @@ package com.ultimaker
 import com.github.slugify.Slugify
 
 String slug(String subject) {
-  Slugify slugify = new Slugify()
-
-  return slugify.slugify(subject)
+  return new Slugify().slugify(subject)
 }
