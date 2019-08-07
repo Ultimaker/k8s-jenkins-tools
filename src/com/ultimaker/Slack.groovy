@@ -126,7 +126,7 @@ def updatePlaygroundSuccess(
   Map[] attachments = [[
     color: 'good',
     fallback: "Playground \"${name}\" was updated.",
-    pretext: "Playground \"<https://playground-${name}.ultimaker.k8s-dev.ultimaker.works|${name}>\" was updated ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
+    text: "Playground \"<https://playground-${name}.ultimaker.k8s-dev.ultimaker.works|${name}>\" was updated ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
     fields: [
       [ title: 'Component', value: "<https://github.com/Ultimaker/${repo}/|${component}>" ],
       [ title: 'Branch', value: "<https://github.com/Ultimaker/${repo}/tree/${branch}|${branch}>" ],
@@ -153,7 +153,7 @@ def updateDeploymentSuccess(
   Map[] attachments = [[
     color: 'good',
     fallback: "Deployment \"${name}\" was updated.",
-    pretext: "Deployment \"<${deploymentUrl}|${name}>\" was updated ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
+    text: "Deployment \"<${deploymentUrl}|${name}>\" was updated ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
     fields: [
       [ title: 'Component', value: "<https://github.com/Ultimaker/${repo}|${component}>" ],
       [ title: 'Branch', value: "<https://github.com/Ultimaker/${repo}/tree/${branch}|${branch}>" ],
@@ -192,7 +192,7 @@ def buildFailure(
   Map[] attachments = [[
     color: 'danger',
     fallback: "Failed building \"${component}\".",
-    pretext: "Failed building \"${component}\" ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
+    text: "Failed building \"${component}\" ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
     fields: [
       [ title: 'Component', value: "<https://github.com/Ultimaker/${repo}|${component}>" ],
       [ title: 'Branch', value: "<https://github.com/Ultimaker/${repo}/tree/${branch}|${branch}>" ],
