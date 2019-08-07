@@ -15,7 +15,7 @@ def createPlaygroundSuccess(
   String expiresIn,
   String clusterDomain
 ) {
-  def attachments = [[
+  Map[] attachments = [[
     color: 'good',
     fallback: "Playground \"${name}\" was created.",
     pretext: "Playground \"<https://playground-${name}.ultimaker.${clusterDomain}|${name}>\" was created ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
@@ -40,7 +40,7 @@ def createPlaygroundSuccess(
 }
 
 def createPlaygroundFailure(String name, String buildUrl) {
-  def attachments = [[
+  Map[] attachments = [[
     color: 'danger',
     fallback: "Creating playground \"${name}\" failed.",
     pretext: "Creating playground \"${name}\" failed ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
@@ -68,7 +68,7 @@ def cleanupPlaygroundFailure(String name) {
  */
 
 def deletePlaygroundSuccess(String name, String buildUrl) {
-  def attachments = [[
+  Map[] attachments = [[
     color: 'warning',
     fallback: "Playground \"${name}\" was deleted.",
     pretext: "Playground \"${name}\" was deleted ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
@@ -78,7 +78,7 @@ def deletePlaygroundSuccess(String name, String buildUrl) {
 }
 
 def deletePlaygroundFailure(String name, String buildUrl) {
-  def attachments = [[
+  Map[] attachments = [[
     color: 'danger',
     fallback: "Failed to delete playground \"${name}\".",
     pretext: "Failed to delete playground \"${name}\" ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
@@ -92,7 +92,7 @@ def deletePlaygroundFailure(String name, String buildUrl) {
  */
 
 def extendPlaygroundSuccess(String name, String buildUrl, String expiresAfter) {
-  def attachments = [[
+  Map[] attachments = [[
     color: 'warning',
     fallback: "Playground \"${name}\" extended with *${expiresAfter}*.",
     pretext: "Playground \"${name}\" extended with *${expiresAfter}* ( <${buildUrl}|job> / <${buildUrl}console|console> )."
@@ -102,7 +102,7 @@ def extendPlaygroundSuccess(String name, String buildUrl, String expiresAfter) {
 }
 
 def extendPlaygroundFailure(String name, String buildUrl) {
-  def attachments = [[
+  Map[] attachments = [[
     color: 'danger',
     fallback: "Failed to extend playground \"${name}\".",
     pretext: "Failed to extend \"${name}\" playground ( <${buildUrl}|job> / <${buildUrl}console|console> )."
