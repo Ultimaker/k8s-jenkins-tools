@@ -2,6 +2,10 @@
 
 package com.ultimaker
 
+/*
+ * CREATE PLAYGROUND
+ */
+
 def createPlaygroundSuccess(
   String name,
   String buildUrl,
@@ -42,21 +46,26 @@ def createPlaygroundFailure(String name, String buildUrl) {
     pretext: "Creating playground \"${name}\" failed ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
   ]]
 
-  slackSend channel: '#ci-playgrounds',
-    attachments: attachments
+  slackSend channel: '#ci-playgrounds', attachments: attachments
 }
 
+/*
+ * CLEANUP PLAYGROUND
+ */
+
 def cleanupPlaygroundSuccess(String name) {
-  slackSend color: 'warning',
-    channel: '#ci-playgrounds',
+  slackSend color: 'warning', channel: '#ci-playgrounds',
     message: "Playground \"${name}\" has been cleaned up."
 }
 
 def cleanupPlaygroundFailure(String name) {
-  slackSend color: 'danger',
-    channel: '#ci-playgrounds',
+  slackSend color: 'danger', channel: '#ci-playgrounds',
     message: "Failed to clean up \"${name}\" playground."
 }
+
+/*
+ * DELETE PLAYGROUND
+ */
 
 def deletePlaygroundSuccess(String name, String buildUrl) {
   def attachments = [[
@@ -65,8 +74,7 @@ def deletePlaygroundSuccess(String name, String buildUrl) {
     pretext: "Playground \"${name}\" was deleted ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
   ]]
 
-  slackSend channel: '#ci-playgrounds',
-    attachments: attachments
+  slackSend channel: '#ci-playgrounds', attachments: attachments
 }
 
 def deletePlaygroundFailure(String name, String buildUrl) {
@@ -76,6 +84,29 @@ def deletePlaygroundFailure(String name, String buildUrl) {
     pretext: "Failed to delete playground \"${name}\" ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
   ]]
 
-  slackSend channel: '#ci-playgrounds',
-    attachments: attachments
+  slackSend channel: '#ci-playgrounds', attachments: attachments
+}
+
+/*
+ * EXTEND PLAYGROUND
+ */
+
+def extendPlaygroundSuccess(String name, String buildUrl, String expiresAfter) {
+  def attachments = [[
+    color: 'warning',
+    fallback: "Playground \"${name}\" extended with *${expiresAfter}*.",
+    pretext: "Playground \"${name}\" extended with *${expiresAfter}* ( <${buildUrl}|job> / <${buildUrl}console|console> )."
+  ]]
+
+  slackSend channel: '#ci-playgrounds', attachments: attachments
+}
+
+def extendPlaygroundFailure(String name, String buildUrl) {
+  def attachments = [[
+    color: 'danger',
+    fallback: "Failed to extend playground \"${name}\".",
+    pretext: "Failed to extend \"${name}\" playground ( <${buildUrl}|job> / <${buildUrl}console|console> )."
+  ]]
+
+  slackSend channel: '#ci-playgrounds', attachments: attachments
 }
