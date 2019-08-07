@@ -110,3 +110,95 @@ def extendPlaygroundFailure(String name, String buildUrl) {
 
   slackSend channel: '#ci-playgrounds', attachments: attachments
 }
+
+/*
+ * UPDATE PLAYGROUND
+ */
+
+def updatePlaygroundSuccess(
+  String name,
+  String buildUrl,
+  String component,
+  String repo,
+  String branch,
+  String commit
+) {
+  Map[] attachments = [[
+    color: 'good',
+    fallback: "Playground \"${name}\" was updated.",
+    pretext: "Playground \"<https://playground-${name}.ultimaker.k8s-dev.ultimaker.works|${name}>\" was updated ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
+    fields: [
+      [ title: 'Component', value: "<https://github.com/Ultimaker/${repo}/|${component}>" ],
+      [ title: 'Branch', value: "<https://github.com/Ultimaker/${repo}/tree/${branch}|${branch}>" ],
+      [ title: 'Commit', value: "<https://github.com/Ultimaker/${repo}/commit/${commit}|${commit}>" ],
+    ]
+  ]]
+
+  slackSend channel: '#ci-playgrounds', attachments: attachments
+}
+
+/*
+ * UPDATE DEPLOYMENT
+ */
+
+def updateDeploymentSuccess(
+  String name,
+  String buildUrl,
+  String deploymentUrl,
+  String component,
+  String repo,
+  String branch,
+  String commit
+) {
+  Map[] attachments = [[
+    color: 'good',
+    fallback: "Deployment \"${name}\" was updated.",
+    pretext: "Deployment \"<${deploymentUrl}|${name}>\" was updated ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
+    fields: [
+      [ title: 'Component', value: "<https://github.com/Ultimaker/${repo}|${component}>" ],
+      [ title: 'Branch', value: "<https://github.com/Ultimaker/${repo}/tree/${branch}|${branch}>" ],
+      [ title: 'Commit', value: "<https://github.com/Ultimaker/${repo}/commit/${commit}|${commit}>" ],
+    ]
+  ]]
+
+  slackSend channel: '#ci-deployments', attachments: attachments
+}
+
+def updateDeploymentFailure(
+  String name,
+  String buildUrl,
+  String component
+) {
+  Map[] attachments = [[
+    color: 'danger',
+    fallback: "Failure while deploying \"${component}\" to ${deployment}.",
+    text: "Failure while deploying \"${component}\" to ${deployment} ( <${buildUrl}|job> / <${buildUrl}console|console> )."
+  ]]
+
+  slackSend channel: '#ci-deployments', attachments: attachments
+}
+
+/*
+ * BUILD FAILURE
+ */
+
+def buildFailure(
+  String buildUrl,
+  String component,
+  String repo,
+  String branch,
+  String stage
+) {
+  Map[] attachments = [[
+    color: 'danger',
+    fallback: "Failed building \"${component}\".",
+    pretext: "Failed building \"${component}\" ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
+    fields: [
+      [ title: 'Component', value: "<https://github.com/Ultimaker/${repo}|${component}>" ],
+      [ title: 'Branch', value: "<https://github.com/Ultimaker/${repo}/tree/${branch}|${branch}>" ],
+      [ title: 'Stage', value: stage ],
+    ]
+  ]]
+
+  slackSend channel: '#ci-builds', attachments: attachments
+}
