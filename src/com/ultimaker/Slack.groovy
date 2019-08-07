@@ -18,7 +18,7 @@ def createPlaygroundSuccess(
   Map[] attachments = [[
     color: 'good',
     fallback: "Playground \"${name}\" was created.",
-    pretext: "Playground \"<https://playground-${name}.ultimaker.${clusterDomain}|${name}>\" was created ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
+    text: "Playground \"<https://playground-${name}.ultimaker.${clusterDomain}|${name}>\" was created ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
     fields: [
       [
         title: 'Endpoints',
@@ -43,7 +43,7 @@ def createPlaygroundFailure(String name, String buildUrl) {
   Map[] attachments = [[
     color: 'danger',
     fallback: "Creating playground \"${name}\" failed.",
-    pretext: "Creating playground \"${name}\" failed ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
+    text: "Creating playground \"${name}\" failed ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
   ]]
 
   slackSend channel: '#ci-playgrounds', attachments: attachments
@@ -71,7 +71,7 @@ def deletePlaygroundSuccess(String name, String buildUrl) {
   Map[] attachments = [[
     color: 'warning',
     fallback: "Playground \"${name}\" was deleted.",
-    pretext: "Playground \"${name}\" was deleted ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
+    text: "Playground \"${name}\" was deleted ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
   ]]
 
   slackSend channel: '#ci-playgrounds', attachments: attachments
@@ -81,7 +81,7 @@ def deletePlaygroundFailure(String name, String buildUrl) {
   Map[] attachments = [[
     color: 'danger',
     fallback: "Failed to delete playground \"${name}\".",
-    pretext: "Failed to delete playground \"${name}\" ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
+    text: "Failed to delete playground \"${name}\" ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
   ]]
 
   slackSend channel: '#ci-playgrounds', attachments: attachments
@@ -95,7 +95,7 @@ def extendPlaygroundSuccess(String name, String buildUrl, String expiresAfter) {
   Map[] attachments = [[
     color: 'warning',
     fallback: "Playground \"${name}\" extended with ${expiresAfter}.",
-    pretext: "Playground \"${name}\" extended with *${expiresAfter}* ( <${buildUrl}|job> / <${buildUrl}console|console> )."
+    text: "Playground \"${name}\" extended with *${expiresAfter}* ( <${buildUrl}|job> / <${buildUrl}console|console> )."
   ]]
 
   slackSend channel: '#ci-playgrounds', attachments: attachments
@@ -105,7 +105,7 @@ def extendPlaygroundFailure(String name, String buildUrl) {
   Map[] attachments = [[
     color: 'danger',
     fallback: "Failed to extend playground \"${name}\".",
-    pretext: "Failed to extend \"${name}\" playground ( <${buildUrl}|job> / <${buildUrl}console|console> )."
+    text: "Failed to extend \"${name}\" playground ( <${buildUrl}|job> / <${buildUrl}console|console> )."
   ]]
 
   slackSend channel: '#ci-playgrounds', attachments: attachments
