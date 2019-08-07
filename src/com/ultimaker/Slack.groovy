@@ -36,19 +36,46 @@ def createPlaygroundSuccess(
 }
 
 def createPlaygroundFailure(String name, String buildUrl) {
-  slackSend color: 'danger',
-    channel: '#ci-playgrounds',
-    message: "Creating playground \"${name}\" failed ( <${buildUrl}|job> / <${buildUrl}console|console> )."
+  def attachments = [[
+    color: 'danger',
+    fallback: "Creating playground \"${name}\" failed.",
+    pretext: "Creating playground \"${name}\" failed ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
+  ]]
+
+  slackSend channel: '#ci-playgrounds',
+    attachments: attachments
 }
 
-def cleanupPlaygroundSuccess(String namespace) {
+def cleanupPlaygroundSuccess(String name) {
   slackSend color: 'warning',
     channel: '#ci-playgrounds',
-    message: "Playground \"${namespace}\" has been cleaned up."
+    message: "Playground \"${name}\" has been cleaned up."
 }
 
-def cleanupPlaygroundFailure(String namespace) {
+def cleanupPlaygroundFailure(String name) {
   slackSend color: 'danger',
     channel: '#ci-playgrounds',
-    message: "Failed to clean up \"${namespace}\" playground."
+    message: "Failed to clean up \"${name}\" playground."
+}
+
+def deletePlaygroundSuccess(String name, String buildUrl) {
+  def attachments = [[
+    color: 'warning',
+    fallback: "Playground \"${name}\" was deleted.",
+    pretext: "Playground \"${name}\" was deleted ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
+  ]]
+
+  slackSend channel: '#ci-playgrounds',
+    attachments: attachments
+}
+
+def deletePlaygroundFailure(String name, String buildUrl) {
+  def attachments = [[
+    color: 'danger',
+    fallback: "Failed to delete playground \"${name}\".",
+    pretext: "Failed to delete playground \"${name}\" ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
+  ]]
+
+  slackSend channel: '#ci-playgrounds',
+    attachments: attachments
 }
