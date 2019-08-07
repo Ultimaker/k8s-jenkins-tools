@@ -171,8 +171,8 @@ static def updateDeploymentFailure(
 ) {
   Map[] attachments = [[
     color: 'danger',
-    fallback: "Failure while deploying \"${component}\" to ${deployment}.",
-    text: "Failure while deploying \"${component}\" to ${deployment} ( <${buildUrl}|job> / <${buildUrl}console|console> )."
+    fallback: "Failure while deploying \"${component}\" to ${name}.",
+    text: "Failure while deploying \"${component}\" to ${name} ( <${buildUrl}|job> / <${buildUrl}console|console> )."
   ]]
 
   slackSend channel: '#ci-deployments', attachments: attachments
