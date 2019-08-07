@@ -15,7 +15,7 @@ def playgroundCreated(
   def attachments = [[
     color: "good",
     fallback: "Playground \"${name}\" was created.",
-    pretext: "Playground \"<https://playground-${name}.ultimaker.${clusterDomain}|${name}>\" was created ( <${env.BUILD_URL}|job> / <${env.BUILD_URL}console|console> ).",
+    pretext: "Playground \"<https://playground-${name}.ultimaker.${clusterDomain}|${name}>\" was created ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
     fields: [
       [
         title: "Endpoints",
