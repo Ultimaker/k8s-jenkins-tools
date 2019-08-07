@@ -2,8 +2,7 @@
 
 package com.ultimaker
 
-def playgroundCreated(
-  String channel,
+def createPlaygroundSuccess(
   String name,
   String buildUrl,
   String frontendBranch,
@@ -13,12 +12,12 @@ def playgroundCreated(
   String clusterDomain
 ) {
   def attachments = [[
-    color: "good",
+    color: 'good',
     fallback: "Playground \"${name}\" was created.",
     pretext: "Playground \"<https://playground-${name}.ultimaker.${clusterDomain}|${name}>\" was created ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
     fields: [
       [
-        title: "Endpoints",
+        title: 'Endpoints',
         value: """
           - https://playground-${name}.ultimaker.${clusterDomain}
           - https://playground-${name}.cms.${clusterDomain}/admin
@@ -26,17 +25,30 @@ def playgroundCreated(
           """.stripIndent(),
         short: false
       ],
-      [ title: "Frontend branch", value: "<https://github.com/Ultimaker/Ultimaker.com-frontend/tree/${frontendBranch}|${frontendBranch}>", short: true ],
-      [ title: "Legacy branch", value: "<https://github.com/Ultimaker/Ultimaker.com/tree/${legacyBranch}|${legacyBranch}>", short: true ],
-      [ title: "Integration-Service branch", value: "<https://github.com/Ultimaker/Ultimaker.com-integration-service/tree/${integrationServiceBranch}|${integrationServiceBranch}>", short: true ],
-      [ title: "Expires in", value: expiresIn, short: true ],
+      [ title: 'Frontend branch', value: "<https://github.com/Ultimaker/Ultimaker.com-frontend/tree/${frontendBranch}|${frontendBranch}>", short: true ],
+      [ title: 'Legacy branch', value: "<https://github.com/Ultimaker/Ultimaker.com/tree/${legacyBranch}|${legacyBranch}>", short: true ],
+      [ title: 'Integration-Service branch', value: "<https://github.com/Ultimaker/Ultimaker.com-integration-service/tree/${integrationServiceBranch}|${integrationServiceBranch}>", short: true ],
+      [ title: 'Expires in', value: expiresIn, short: true ],
     ]
   ]]
 
-  slackSend channel: channel, attachments: attachments
+  slackSend channel: '#ci-playgrounds', attachments: attachments
 }
 
-def playgroundFailed(String channel, String name, String buildUrl) {
-  slackSend color: 'danger', channel: '#ci-playgrounds',
-        message: "Creating playground \"${name}\" failed ( <${buildUrl}|job> / <${buildUrl}console|console> )."
+def createPlaygroundFailure(String name, String buildUrl) {
+  slackSend color: 'danger',
+    channel: '#ci-playgrounds',
+    message: "Creating playground \"${name}\" failed ( <${buildUrl}|job> / <${buildUrl}console|console> )."
+}
+
+def cleanupPlaygroundSuccess(String namespace) {
+  slackSend color: 'warning',
+    channel: '#ci-playgrounds',
+    message: "Playground \"${namespace}\" has been cleaned up."
+}
+
+def cleanupPlaygroundFailure(String namespace) {
+  slackSend color: 'danger',
+    channel: '#ci-playgrounds',
+    message: "Failed to clean up \"${namespace}\" playground."
 }
