@@ -19,7 +19,6 @@ def call(
         title: 'Endpoints',
         value: """
           - https://playground-${name}.ultimaker.${clusterDomain}
-          - https://playground-${name}.cms.${clusterDomain}/admin
           - https://playground-${name}.integration-service.${clusterDomain}
           """.stripIndent(),
         short: false
@@ -37,7 +36,6 @@ def call(
     message: "Playground \"[${name}](https://playground-${name}.ultimaker.${clusterDomain})\" was created ( [job](${buildUrl}) / [console](${buildUrl}console) ).\n" +
     '## Endpoints\n' +
     "- [https://playground-${name}.ultimaker.${clusterDomain}](https://playground-${name}.ultimaker.${clusterDomain})\n" +
-    "- [https://playground-${name}.cms.${clusterDomain}/admin](https://playground-${name}.cms.${clusterDomain}/admin)\n" +
     "- [https://playground-${name}.integration-service.${clusterDomain}](https://playground-${name}.integration-service.${clusterDomain})\n\n" +
     '## Frontend branch\n' +
     "[${frontendBranch}](https://github.com/Ultimaker/Ultimaker.com-frontend/tree/${frontendBranch})\n" +
