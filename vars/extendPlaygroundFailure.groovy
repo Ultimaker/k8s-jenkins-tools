@@ -2,14 +2,6 @@
 
 def call(String name, String buildUrl) {
 
-  Map[] attachments = [[
-    color: 'danger',
-    fallback: "Failed to extend playground \"${name}\".",
-    text: "Failed to extend \"${name}\" playground ( <${buildUrl}|job> / <${buildUrl}console|console> )."
-  ]]
-
-  slackSend channel: '#ci-playgrounds', attachments: attachments
-
   office365ConnectorSend color: '#d93232',
     message: "Failed to extend \"${name}\" playground ( [job](${buildUrl}) / [console](${buildUrl}console) ).",
     status: 'Failure',

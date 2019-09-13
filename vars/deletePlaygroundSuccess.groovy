@@ -2,14 +2,6 @@
 
 def call(String name, String buildUrl) {
 
-  Map[] attachments = [[
-    color: 'warning',
-    fallback: "Playground \"${name}\" was deleted.",
-    text: "Playground \"${name}\" was deleted ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
-  ]]
-
-  slackSend channel: '#ci-playgrounds', attachments: attachments
-
   office365ConnectorSend color: '#0be725',
     message: "Playground \"${name}\" was deleted ( [job](${buildUrl}) / [console](${buildUrl}console) ).",
     status: 'Success',

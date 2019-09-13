@@ -2,9 +2,6 @@
 
 def call(String name) {
 
-  slackSend color: 'warning', channel: '#ci-playgrounds',
-    message: "Playground \"${name}\" has been cleaned up."
-
   office365ConnectorSend color: '#0be725',
     message: "Playground \"${name}\" has been cleaned up.",
     status: 'Success',

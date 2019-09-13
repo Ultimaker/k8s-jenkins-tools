@@ -2,14 +2,6 @@
 
 def call(String name, String buildUrl) {
 
-  Map[] attachments = [[
-    color: 'danger',
-    fallback: "Creating playground \"${name}\" failed.",
-    text: "Creating playground \"${name}\" failed ( <${buildUrl}|job> / <${buildUrl}console|console> ).",
-  ]]
-
-  slackSend channel: '#ci-playgrounds', attachments: attachments
-
   office365ConnectorSend color: '#d93232',
     message: "Creating playground \"${name}\" failed ( [job](${buildUrl}) / [console](${buildUrl}console) ).",
     status: 'Failure',

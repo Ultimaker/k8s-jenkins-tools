@@ -6,14 +6,6 @@ def call(
   String component
 ) {
 
-  Map[] attachments = [[
-    color: 'danger',
-    fallback: "Failure while deploying \"${component}\" to ${name}.",
-    text: "Failure while deploying \"${component}\" to ${name} ( <${buildUrl}|job> / <${buildUrl}console|console> )."
-  ]]
-
-  slackSend channel: '#ci-deployments', attachments: attachments
-
   office365ConnectorSend color: '#d93232',
     message: "Failure while deploying \"${component}\" to ${name} ( [job](${buildUrl}) / [console](${buildUrl}console) ).",
     status: 'Failure',
