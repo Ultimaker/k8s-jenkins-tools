@@ -3,7 +3,7 @@
 def call(
   String name,
   String buildUrl,
-  String frontendBranch,
+  String nuxtBranch,
   String integrationServiceBranch,
   String legacyBranch,
   String expiresIn,
@@ -15,12 +15,12 @@ def call(
     '## Endpoints\n' +
     "- [https://playground-${name}.ultimaker.${clusterDomain}](https://playground-${name}.ultimaker.${clusterDomain})\n" +
     "- [https://playground-${name}.integration-service.${clusterDomain}](https://playground-${name}.integration-service.${clusterDomain})\n\n" +
-    '## Frontend branch\n' +
-    "[${frontendBranch}](https://github.com/Ultimaker/Ultimaker.com-frontend/tree/${frontendBranch})\n" +
-    '## Legacy branch\n' +
-    "[${legacyBranch}](https://github.com/Ultimaker/Ultimaker.com/tree/${legacyBranch})\n" +
+    '## Nuxt branch\n' +
+    "[${nuxtBranch}](https://github.com/Ultimaker/Ultimaker.com-frontend-nuxt/tree/${nuxtBranch})\n" +
     '## Integration-Service branch\n' +
     "[${integrationServiceBranch}](https://github.com/Ultimaker/Ultimaker.com-integration-service/tree/${integrationServiceBranch})\n" +
+    '## Legacy branch\n' +
+    "[${legacyBranch}](https://github.com/Ultimaker/Ultimaker.com/tree/${legacyBranch})\n" +
     '## Expires in\n' +
     expiresIn,
     status: 'Success',
